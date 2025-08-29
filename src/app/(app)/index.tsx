@@ -1,10 +1,9 @@
 import { FlashList } from '@shopify/flash-list';
-import { useRouter } from 'expo-router';
 import React from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { FocusAwareStatusBar, Settings, Text } from '@/components/ui';
+import { FocusAwareStatusBar, Text } from '@/components/ui';
 
 export default function Contacts() {
   const insets = useSafeAreaInsets();
@@ -24,24 +23,24 @@ export default function Contacts() {
         </View>
         <View className={'mt-10 items-center gap-10'}>
           <View className="flex-row gap-10">
-            <View className="dark:bg-color2 border-color4 w-28 items-center gap-2 rounded-2xl border bg-white py-3 dark:border-0">
+            <View className="w-28 items-center gap-2 rounded-2xl border border-color4 bg-white py-3 dark:border-0 dark:bg-color2">
               <View className="mb-2 size-4 bg-red" />
               <Text className="font-bold">28</Text>
               <Text className="font-light">Level</Text>
             </View>
-            <View className="dark:bg-color2 border-color4 w-28 items-center gap-2 rounded-2xl border bg-white py-3 dark:border-0">
+            <View className="w-28 items-center gap-2 rounded-2xl border border-color4 bg-white py-3 dark:border-0 dark:bg-color2">
               <View className="mb-2 size-4 bg-red" />
               <Text className="font-bold">28</Text>
               <Text className="font-light">Level</Text>
             </View>
           </View>
           <View className="flex-row gap-10">
-            <View className="dark:bg-color2 border-color4 w-28 items-center gap-2 rounded-2xl border bg-white py-3 dark:border-0">
+            <View className="w-28 items-center gap-2 rounded-2xl border border-color4 bg-white py-3 dark:border-0 dark:bg-color2">
               <View className="mb-2 size-4 bg-red" />
               <Text className="font-bold">28</Text>
               <Text className="font-light">Level</Text>
             </View>
-            <View className="dark:bg-color2 border-color4 w-28 items-center gap-2 rounded-2xl border bg-white py-3 dark:border-0">
+            <View className="w-28 items-center gap-2 rounded-2xl border border-color4 bg-white py-3 dark:border-0 dark:bg-color2">
               <View className="mb-2 size-4 bg-red" />
               <Text className="font-bold">28</Text>
               <Text className="font-light">Level</Text>
@@ -52,21 +51,21 @@ export default function Contacts() {
           <Text className="mb-5 text-2xl font-bold">Quick Actions</Text>
           <View className="gap-5">
             <View className="flex-row gap-5">
-              <View className="dark:bg-color2 border-color4 flex-1 items-center gap-2 rounded-2xl border bg-white py-4 dark:border-0">
+              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
                 <View className="size-4 bg-red" />
                 <Text className="font-light">Level</Text>
               </View>
-              <View className="dark:bg-color2 border-color4 flex-1 items-center gap-2 rounded-2xl border bg-white py-4 dark:border-0">
+              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
                 <View className="size-4 bg-red" />
                 <Text className="font-light">Level</Text>
               </View>
             </View>
             <View className="flex-row gap-5">
-              <View className="dark:bg-color2 border-color4 flex-1 items-center gap-2 rounded-2xl border bg-white py-4 dark:border-0">
+              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
                 <View className="size-4 bg-red" />
                 <Text className="font-light">Level</Text>
               </View>
-              <View className="dark:bg-color2 border-color4 flex-1 items-center gap-2 rounded-2xl border bg-white py-4 dark:border-0">
+              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
                 <View className="size-4 bg-red" />
                 <Text className="font-light">Level</Text>
               </View>
@@ -87,7 +86,7 @@ export default function Contacts() {
                   <Text className="font-light">Lightning Bolt</Text>
                 </View>
                 <View className="items-end">
-                  <Text className="text-color5 text-lg font-bold">112.30</Text>
+                  <Text className="text-lg font-bold text-color5">112.30</Text>
                   <Text className="text-sm font-light">Best Lap</Text>
                 </View>
               </View>

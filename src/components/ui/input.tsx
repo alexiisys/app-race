@@ -16,7 +16,7 @@ import { Text } from './text';
 
 const inputTv = tv({
   slots: {
-    container: 'flex-1',
+    container: '',
     inputContainer: 'align-center relative flex-row gap-2',
     label: 'text-md mb-2 font-gilroy font-medium text-grey',
     input:

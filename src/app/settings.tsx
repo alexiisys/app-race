@@ -5,7 +5,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { FocusAwareStatusBar, Switch, Text } from '@/components/ui';
+import { FocusAwareStatusBar, Input, Switch, Text } from '@/components/ui';
 import { useSelectedTheme } from '@/lib';
 import { openLinkInBrowser } from '@/lib/utils';
 
@@ -36,6 +36,35 @@ export default function Settings() {
             label={isDark ? 'Dark theme' : 'Light theme'}
             accessibilityLabel={'theme_switch'}
           />
+          <View className='h-[1px] w-full bg-dark'/>
+          <Input
+            outlined
+            placeholderTextColor={'#9a9a9a'}
+            placeholder="Rick Sanchez"
+            label={'Player Name'}
+          />
+          <Input
+            outlined
+            placeholderTextColor={'#9a9a9a'}
+            placeholder="28"
+            label={'Level'}
+          />
+          <Input
+            outlined
+            placeholderTextColor={'#9a9a9a'}
+            placeholder="750"
+            label={'XP'}
+          />
+          <Input
+            outlined
+            placeholderTextColor={'#9a9a9a'}
+            placeholder="53680"
+            label={'Money'}
+          />
+          <View className='flex-row gap-4 mb-4'>
+            <TouchableOpacity className='flex-1 py-1 rounded-lg items-center justify-center bg-color8'><Text className='text-white font-medium'>Cancel</Text></TouchableOpacity>
+            <TouchableOpacity className='flex-1 py-1 rounded-lg items-center justify-center bg-color5'><Text className='text-white font-medium'>Add</Text></TouchableOpacity>
+          </View>
           {/*<TouchableOpacity onPress={openPrivacyPolicy}>*/}
           {/*  <Text className="text-app-shadowBorder underline">*/}
           {/*    Privacy Policy*/}

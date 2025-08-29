@@ -3,10 +3,12 @@ import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { FocusAwareStatusBar, Plus, Text } from '@/components/ui';
+import { FocusAwareStatusBar, Plus, Text, useModal } from '@/components/ui';
+import AddVehicleModal from '@/components/ui/modals/add-vehicle-modal';
 
 const Garage = () => {
   const insets = useSafeAreaInsets();
+  const refModal = useModal();
   return (
     <>
       <FocusAwareStatusBar />
@@ -84,19 +86,23 @@ const Garage = () => {
                   </View>
                 </View>
               ) : (
-                <View className="m-2 h-28 flex-1 items-center justify-center rounded-xl border-2 border-dashed border-color5">
+                <TouchableOpacity
+                  onPress={() => refModal.present()}
+                  className="m-2 h-28 flex-1 items-center justify-center rounded-xl border-2 border-dashed border-color5"
+                >
                   <View className="flex-row items-center justify-center gap-3">
-                    <TouchableOpacity className="rounded-full border-2 border-dashed border-color5 p-1">
+                    <View className="rounded-full border-2 border-dashed border-color5 p-1">
                       <Plus color={'black'} />
-                    </TouchableOpacity>
+                    </View>
                     <Text className="font-medium">Add Vehicle</Text>
                   </View>
-                </View>
+                </TouchableOpacity>
               )
             }
             scrollEnabled={false}
           />
         </View>
+        <AddVehicleModal ref={refModal.ref} />
       </View>
     </>
   );

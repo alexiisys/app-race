@@ -19,6 +19,8 @@ module.exports = {
   color5: '#2654A4',
   color6: '#ECF3FF',
   color7: '#F8F8F9',
+  color8: '#ABABAB',
+  color9: '#FDFFFF',
   icon: '#6A77A2',
   iconActive: '#5E64FC',
   iconInactive: '#AAB6E8',
