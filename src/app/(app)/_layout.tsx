@@ -2,13 +2,10 @@
 import { Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
+import { View } from 'react-native';
 
 import { colors } from '@/components/ui';
-import {
-  Balance,
-  Dashboard,
-  Settings as SettingsIcon,
-} from '@/components/ui/icons';
+import { Balance, Settings as SettingsIcon } from '@/components/ui/icons';
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();
@@ -18,9 +15,25 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarInactiveTintColor: colors.iconInactive,
-        tabBarActiveTintColor: isDark ? colors.white : colors.black,
+        tabBarLabelStyle: {
+          marginTop: 4,
+        },
+        tabBarIconStyle: {
+          width: 60,
+          gap: 6,
+        },
+        tabBarBackground: () => (
+          <View className="flex-1 bg-[#F8F8F9] dark:bg-[#1C1C1E]" />
+        ),
         tabBarStyle: {
-          backgroundColor: isDark ? colors.darkPrimary : colors.primary,
+          height: 70,
+          position: 'absolute',
+          alignItems: 'center',
+          borderTopWidth: 0,
+          margin: 24,
+          overflow: 'hidden',
+          paddingTop: 6,
+          borderRadius: 12,
         },
       }}
     >
@@ -30,37 +43,62 @@ export default function TabLayout() {
           title: 'Dashboard',
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <Dashboard
-              color={focused ? colors.iconActive : colors.iconInactive}
-            />
+            <View className="flex-row flex-nowrap items-center gap-1">
+              {focused ? <Balance /> : <Balance color={'white'} />}
+            </View>
           ),
           tabBarButtonTestID: 'feed-tab',
         }}
       />
       <Tabs.Screen
-        name="favorite"
+        name="garage"
         options={{
+          title: 'Garage',
           headerShown: false,
-          title: 'Favorite',
           tabBarIcon: ({ focused }) => (
-            <Balance
-              color={focused ? colors.iconActive : colors.iconInactive}
-            />
+            <View className="flex-row flex-nowrap items-center gap-1">
+              {focused ? <Balance /> : <Balance color={'white'} />}
+            </View>
           ),
-          tabBarButtonTestID: 'balance-tab',
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="track"
         options={{
+          title: 'Track',
           headerShown: false,
-          title: 'Settings',
           tabBarIcon: ({ focused }) => (
-            <SettingsIcon
-              color={focused ? colors.iconActive : colors.iconInactive}
-            />
+            <View className="flex-row flex-nowrap items-center gap-1">
+              {focused ? <Balance /> : <Balance color={'white'} />}
+            </View>
           ),
-          tabBarButtonTestID: 'settings-tab',
+          tabBarButtonTestID: 'feed-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <View className="flex-row flex-nowrap items-center gap-1">
+              {focused ? <Balance /> : <Balance color={'white'} />}
+            </View>
+          ),
+          tabBarButtonTestID: 'feed-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="leaderboard"
+        options={{
+          title: 'Leaderboard',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <View className="flex-row flex-nowrap items-center gap-1">
+              {focused ? <Balance /> : <Balance color={'white'} />}
+            </View>
+          ),
+          tabBarButtonTestID: 'feed-tab',
         }}
       />
     </Tabs>
