@@ -19,6 +19,9 @@ import {
 } from '@/lib/attribution';
 import { readSettings } from '@/lib/storage';
 import { useThemeConfig } from '@/lib/use-theme-config';
+import { readCars } from '@/lib/storage/modules/cars';
+import { readTracks } from '@/lib/storage/modules/tracks';
+import { readRaces } from '@/lib/storage/modules/races';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -45,6 +48,9 @@ function Providers({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     readSettings();
+    readCars();
+    readTracks();
+    readRaces();
 
     // Initialize Facebook attribution tracking without requesting permissions
     initializeFacebookAttribution();

@@ -3,4 +3,4 @@ export type Race = {
   id_track: string;
   id_car: string;
   time: string;
-}
+};

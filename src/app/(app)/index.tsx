@@ -1,12 +1,20 @@
 import { FlashList } from '@shopify/flash-list';
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { FocusAwareStatusBar, Text } from '@/components/ui';
+import { useCar } from '@/lib/storage/modules/cars';
+import { useRace } from '@/lib/storage/modules/races';
+import { useTrack } from '@/lib/storage/modules/tracks';
 
 export default function Contacts() {
   const insets = useSafeAreaInsets();
+  const tracks = useTrack.use.tracks();
+  const cars = useCar.use.cars();
+  const races = useRace.use.races();
+  const router = useRouter();
   return (
     <>
       <FocusAwareStatusBar />
@@ -51,24 +59,36 @@ export default function Contacts() {
           <Text className="mb-5 text-2xl font-bold">Quick Actions</Text>
           <View className="gap-5">
             <View className="flex-row gap-5">
-              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
+              <TouchableOpacity
+                onPress={() => router.navigate('/(app)/track')}
+                className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2"
+              >
                 <View className="size-4 bg-red" />
-                <Text className="font-light">Level</Text>
-              </View>
-              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
+                <Text className="font-light">Start Race</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.navigate('/(app)/garage')}
+                className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2"
+              >
                 <View className="size-4 bg-red" />
-                <Text className="font-light">Level</Text>
-              </View>
+                <Text className="font-light">View Garage</Text>
+              </TouchableOpacity>
             </View>
             <View className="flex-row gap-5">
-              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
+              <TouchableOpacity
+                onPress={() => router.navigate('/(app)/leaderboard')}
+                className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2"
+              >
                 <View className="size-4 bg-red" />
-                <Text className="font-light">Level</Text>
-              </View>
-              <View className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2">
+                <Text className="font-light">Leaderboards</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.navigate('/(app)/profile')}
+                className="flex-1 items-center gap-2 rounded-2xl border border-color4 bg-white py-4 dark:border-0 dark:bg-color2"
+              >
                 <View className="size-4 bg-red" />
-                <Text className="font-light">Level</Text>
-              </View>
+                <Text className="font-light">Profile</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -76,17 +96,24 @@ export default function Contacts() {
           <Text className="mb-5 text-2xl font-bold">Recent Races</Text>
           <FlashList
             className="flex-1"
-            data={[1, 2, 3, 4, 5, 6]}
+            data={races}
             estimatedItemSize={40}
-            keyExtractor={(m) => String(m)}
-            renderItem={() => (
+            keyExtractor={(m) => m.id}
+            renderItem={({ item: race }) => (
               <View className="flex-1 flex-row justify-between p-4">
                 <View>
-                  <Text className="font-bold">Silverstone Circuit</Text>
-                  <Text className="font-light">Lightning Bolt</Text>
+                  <Text className="font-bold">
+                    {tracks?.find((item) => item.id === race.id_track)?.name}{' '}
+                    Circuit
+                  </Text>
+                  <Text className="font-light">
+                    {cars?.find((item) => item.id === race.id_car)?.name}
+                  </Text>
                 </View>
                 <View className="items-end">
-                  <Text className="text-lg font-bold text-color5">112.30</Text>
+                  <Text className="text-lg font-bold text-color5">
+                    {race.time.replace(',', '.')}
+                  </Text>
                   <Text className="text-sm font-light">Best Lap</Text>
                 </View>
               </View>
