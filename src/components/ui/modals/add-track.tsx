@@ -33,7 +33,7 @@ const AddTrack = React.forwardRef<BottomSheetModal, Props>(
         snapPoints={['24%']}
         title={'Add Track'}
         backgroundStyle={{
-          backgroundColor: colors.white,
+          backgroundColor: isDark ? colors.black : colors.white,
         }}
       >
         <View className={'mx-6 flex-1 gap-3'}>

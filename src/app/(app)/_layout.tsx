@@ -4,8 +4,7 @@ import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { View } from 'react-native';
 
-import { colors } from '@/components/ui';
-import { Balance, Settings as SettingsIcon } from '@/components/ui/icons';
+import { Car, colors, Leaderboard, Map, Motor, Profile } from '@/components/ui';
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();
@@ -17,13 +16,14 @@ export default function TabLayout() {
         tabBarInactiveTintColor: colors.iconInactive,
         tabBarLabelStyle: {
           marginTop: 4,
+          color: isDark ? colors.white : colors.color5,
         },
         tabBarIconStyle: {
           width: 60,
           gap: 6,
         },
         tabBarBackground: () => (
-          <View className="flex-1 bg-[#F8F8F9] dark:bg-[#1C1C1E]" />
+          <View className="flex-1 bg-color7 dark:bg-[#1C1C1E]" />
         ),
         tabBarStyle: {
           height: 70,
@@ -44,7 +44,10 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className="flex-row flex-nowrap items-center gap-1">
-              {focused ? <Balance /> : <Balance color={'white'} />}
+              <Motor
+                color={isDark ? colors.white : colors.color5}
+                strokeWidth={focused ? 2.4 : 1}
+              />
             </View>
           ),
           tabBarButtonTestID: 'feed-tab',
@@ -57,7 +60,10 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className="flex-row flex-nowrap items-center gap-1">
-              {focused ? <Balance /> : <Balance color={'white'} />}
+              <Car
+                color={isDark ? colors.white : colors.color5}
+                strokeWidth={focused ? 2.4 : 1}
+              />
             </View>
           ),
         }}
@@ -69,7 +75,10 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className="flex-row flex-nowrap items-center gap-1">
-              {focused ? <Balance /> : <Balance color={'white'} />}
+              <Map
+                color={isDark ? colors.white : colors.color5}
+                strokeWidth={focused ? 2.4 : 1}
+              />
             </View>
           ),
           tabBarButtonTestID: 'feed-tab',
@@ -82,7 +91,10 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className="flex-row flex-nowrap items-center gap-1">
-              {focused ? <Balance /> : <Balance color={'white'} />}
+              <Profile
+                color={isDark ? colors.white : colors.color5}
+                strokeWidth={focused ? 2.4 : 1}
+              />
             </View>
           ),
           tabBarButtonTestID: 'feed-tab',
@@ -95,7 +107,10 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className="flex-row flex-nowrap items-center gap-1">
-              {focused ? <Balance /> : <Balance color={'white'} />}
+              <Leaderboard
+                color={isDark ? colors.white : colors.color5}
+                strokeWidth={focused ? 2.4 : 1}
+              />
             </View>
           ),
           tabBarButtonTestID: 'feed-tab',

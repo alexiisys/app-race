@@ -12,6 +12,7 @@ import {
   Switch,
   Text,
 } from '@/components/ui';
+import { ArrowLeft } from '@/components/ui/icons/app/arrow-left';
 import { useSelectedTheme } from '@/lib';
 import { setProfile, useSetting } from '@/lib/storage';
 import { openLinkInBrowser } from '@/lib/utils';
@@ -48,10 +49,9 @@ export default function Settings() {
       <SafeAreaView className=" mt-4 flex-1 px-6">
         <View className="relative flex-1 gap-10">
           <View className="flex-row items-center gap-2">
-            <TouchableOpacity
-              className="size-5 bg-red"
-              onPress={() => router.back()}
-            />
+            <TouchableOpacity className="" onPress={() => router.back()}>
+              <ArrowLeft color={isDark ? 'white' : 'black'} />
+            </TouchableOpacity>
             <Text className="font-exo2Bold text-2xl">Settings</Text>
           </View>
           <Switch

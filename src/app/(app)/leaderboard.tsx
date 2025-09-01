@@ -215,7 +215,7 @@ const Leaderboard = () => {
               <TouchableOpacity
                 key={item.value}
                 onPress={() => setSelected(item.value)}
-                className={`rounded-full ${item.value === selected ? 'bg-color6' : 'bg-color-7'} px-4 py-1`}
+                className={`rounded-full ${item.value === selected ? 'bg-color6 dark:bg-dark' : 'bg-color-7 dark:bg-color10'} px-4 py-1`}
               >
                 <Text className={item.value === selected ? 'font-bold' : ''}>
                   {item.label}
@@ -228,7 +228,7 @@ const Leaderboard = () => {
           {founded && (
             <>
               <Text className="mb-3 text-2xl font-bold">Your Rank</Text>
-              <View className="mb-8 flex-row justify-between rounded-3xl border border-color5 p-4">
+              <View className="mb-8 flex-row justify-between rounded-2xl border border-color5 p-4 dark:bg-dark">
                 <View className="flex-row items-center justify-center gap-4">
                   <Text className="text-3xl font-bold text-color5">
                     #{founded.id}
@@ -255,7 +255,7 @@ const Leaderboard = () => {
             renderItem={({ item, index }) => (
               <View
                 // @ts-ignore
-                className={`mb-3 flex-1 flex-row justify-between rounded-3xl border ${item.isMe ? 'border-color5' : 'border-color4'} p-4`}
+                className={`mb-3 flex-1 flex-row justify-between rounded-2xl border dark:bg-dark ${item.isMe ? 'border-color5' : 'border-color4'} p-4`}
               >
                 <View className="flex-row items-center justify-center gap-4">
                   <Text className="text-3xl font-bold text-color5">

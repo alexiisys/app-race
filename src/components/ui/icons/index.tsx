@@ -1,3 +1,4 @@
+export * from './app';
 export * from './base/arrow-right';
 export * from './base/balance';
 export * from './base/caret-down';

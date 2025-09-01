@@ -3,8 +3,15 @@ import React from 'react';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { FocusAwareStatusBar, Plus, Text, useModal } from '@/components/ui';
+import {
+  Flag,
+  FocusAwareStatusBar,
+  Plus,
+  Text,
+  useModal,
+} from '@/components/ui';
 import AddTrack from '@/components/ui/modals/add-track';
+import { useSelectedTheme } from '@/lib';
 import { setTrackId, useSetting } from '@/lib/storage';
 import { useCar } from '@/lib/storage/modules/cars';
 import { addRace, useRace } from '@/lib/storage/modules/races';
@@ -32,6 +39,8 @@ const Track = () => {
     });
   };
 
+  const { selectedTheme } = useSelectedTheme();
+  const isDark = selectedTheme === 'dark';
   return (
     <>
       <FocusAwareStatusBar />
@@ -55,18 +64,18 @@ const Track = () => {
             data={[...tracks, -1]}
             estimatedItemSize={40}
             numColumns={2}
-            keyExtractor={(m) => typeof m === 'number' ? String(m) : m.id}
+            keyExtractor={(m) => (typeof m === 'number' ? String(m) : m.id)}
             renderItem={({ item }) => {
               if (typeof item === 'number') {
                 return (
                   <TouchableOpacity
                     onPress={refModal.present}
                     key={'new'}
-                    className="m-2 h-24 flex-1 items-center justify-center rounded-xl border-2 border-dashed border-color8"
+                    className="m-2 h-24 flex-1 items-center justify-center rounded-xl border-2 border-dashed border-color8 dark:bg-dark"
                   >
                     <View className="flex-row items-center justify-center gap-3">
                       <TouchableOpacity className="rounded-full border-2 border-dashed border-color8 p-1">
-                        <Plus color={'black'} />
+                        <Plus color={isDark ? 'white' : 'black'} />
                       </TouchableOpacity>
                       <Text className="font-medium">Add Vehicle</Text>
                     </View>
@@ -77,9 +86,13 @@ const Track = () => {
                 <TouchableOpacity
                   onPress={() => onSelectTrack(item.id)}
                   key={item.id}
-                  className={`m-2 flex-1  items-center justify-center gap-3 rounded-xl ${selectedTrack === item.id ? 'border border-color5' : 'border border-color4'} py-5`}
+                  className={`m-2 flex-1  items-center justify-center gap-1 rounded-xl dark:bg-dark ${selectedTrack === item.id ? 'border border-color5' : 'border border-color4'} py-5`}
                 >
-                  <View className="size-5 bg-red" />
+                  <Flag
+                    width={24}
+                    height={24}
+                    color={isDark ? 'white' : 'black'}
+                  />
                   <Text className="font-medium">{item.name}</Text>
                 </TouchableOpacity>
               );
@@ -93,7 +106,7 @@ const Track = () => {
         >
           <Text className="font-medium color-white ">Start Race</Text>
         </TouchableOpacity>
-        <View className="mx-6 flex-1">
+        <View className="mx-6 flex-1 ">
           <Text className="mb-5 text-2xl font-bold">Recent Races</Text>
           <FlashList
             className="flex-1"
@@ -101,7 +114,7 @@ const Track = () => {
             estimatedItemSize={40}
             keyExtractor={(m) => m.id}
             renderItem={({ item: race }) => (
-              <View className="flex-1 flex-row justify-between p-4">
+              <View className="m-2 flex-1 flex-row justify-between rounded-xl p-4 dark:bg-dark">
                 <View>
                   <Text className="font-bold">
                     {tracks?.find((item) => item.id === race.id_track)?.name}{' '}

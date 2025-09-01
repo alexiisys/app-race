@@ -5,11 +5,11 @@ import { TouchableOpacity, View } from 'react-native';
 import { colors, Input, Text } from '@/components/ui';
 import ItemPicker from '@/components/ui/modals/item-picker';
 import { useSelectedTheme } from '@/lib';
+import { setCarId } from '@/lib/storage';
 import { addCar } from '@/lib/storage/modules/cars';
 import { CATEGORY_CAR } from '@/lib/utils';
 
 import { Modal } from '../modal';
-import { setCarId } from '@/lib/storage';
 
 type Props = {
   onClose?: () => void;
@@ -30,7 +30,8 @@ const AddVehicleModal = React.forwardRef<BottomSheetModal, Props>(
         param2: Math.floor(Math.random() * (100 - 20 + 1)) + 20,
       };
       addCar(car);
-      setCarId(car.id)
+      setCarId(car.id);
+      onClose?.();
     };
 
     return (
@@ -40,10 +41,10 @@ const AddVehicleModal = React.forwardRef<BottomSheetModal, Props>(
         snapPoints={['33%']}
         title={'Add Vehicle'}
         backgroundStyle={{
-          backgroundColor: colors.white,
+          backgroundColor: isDark ? colors.black : colors.white,
         }}
       >
-        <View className={'mx-6 flex-1'}>
+        <View className={'mx-6 flex-1 gap-2'}>
           <Input
             outlined
             onChangeText={setName}
