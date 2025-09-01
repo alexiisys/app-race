@@ -9,6 +9,14 @@ import { useCar } from '@/lib/storage/modules/cars';
 import { useRace } from '@/lib/storage/modules/races';
 import { useTrack } from '@/lib/storage/modules/tracks';
 
+const leaderBoard = [
+  {
+    track: 'Nurburgring',
+    username: 'Silverstone',
+    time: 0,
+  },
+];
+
 export default function Contacts() {
   const insets = useSafeAreaInsets();
   const tracks = useTrack.use.tracks();
@@ -21,7 +29,7 @@ export default function Contacts() {
       <ScrollView
         className="flex-1"
         contentContainerClassName="gap-4 bg-white dark:bg-black"
-        style={{ paddingTop: insets.top + 20 }}
+        style={{ paddingTop: insets.top + 20, marginBottom: insets.bottom }}
       >
         <View className="mx-6 flex-row items-center justify-between">
           <View className="gap-2">
@@ -112,7 +120,7 @@ export default function Contacts() {
                 </View>
                 <View className="items-end">
                   <Text className="text-lg font-bold text-color5">
-                    {race.time.replace(',', '.')}
+                    {race.time}
                   </Text>
                   <Text className="text-sm font-light">Best Lap</Text>
                 </View>

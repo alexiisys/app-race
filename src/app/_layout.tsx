@@ -50,7 +50,7 @@ function Providers({ children }: { children: React.ReactNode }) {
     readSettings();
     readCars();
     readTracks();
-    readRaces();
+    // readRaces();
 
     // Initialize Facebook attribution tracking without requesting permissions
     initializeFacebookAttribution();

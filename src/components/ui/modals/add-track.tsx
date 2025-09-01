@@ -1,10 +1,10 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { useRouter } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { colors, Input, Modal, Text } from '@/components/ui';
 import { useSelectedTheme } from '@/lib';
+import { setTrackId } from '@/lib/storage';
 import { addTrack } from '@/lib/storage/modules/tracks';
 
 type Props = {
@@ -18,10 +18,12 @@ const AddTrack = React.forwardRef<BottomSheetModal, Props>(
     const [name, setName] = React.useState<string>('');
 
     const onAdd = () => {
-      addTrack({
+      const track = {
         id: `id_track_${Date.now()}`,
         name,
-      });
+      };
+      addTrack(track);
+      setTrackId(track.id);
       onClose?.();
     };
     return (

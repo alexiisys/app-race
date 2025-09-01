@@ -16,6 +16,7 @@ const Track = () => {
   const tracks = useTrack.use.tracks();
   const cars = useCar.use.cars();
   const races = useRace.use.races();
+
   const { selectedTrack, selectedCar } = useSetting.use.settings();
   const onSelectTrack = (id: string) => {
     setTrackId(id);
@@ -25,8 +26,8 @@ const Track = () => {
       id: `id_race_${Date.now()}`,
       id_car: selectedCar,
       id_track: selectedTrack,
-      time: String(
-        `${Math.floor(Math.random() * (200 - 80 + 1)) + 80},${Math.floor(Math.random() * (100 - 10 + 1)) + 10}`
+      time: Number(
+        `${Math.floor(Math.random() * (120 - 80 + 1)) + 80}.${Math.floor(Math.random() * (100 - 10 + 1)) + 10}`
       ),
     });
   };
@@ -37,7 +38,7 @@ const Track = () => {
       <ScrollView
         className="flex-1"
         contentContainerClassName="gap-4 bg-white dark:bg-black"
-        style={{ paddingTop: insets.top + 20 }}
+        style={{ paddingTop: insets.top + 20, marginBottom: 60 }}
       >
         <View className="mx-6 flex-row items-center justify-between">
           <View className="gap-2">
@@ -54,7 +55,7 @@ const Track = () => {
             data={[...tracks, -1]}
             estimatedItemSize={40}
             numColumns={2}
-            keyExtractor={(m) => String(m)}
+            keyExtractor={(m) => typeof m === 'number' ? String(m) : m.id}
             renderItem={({ item }) => {
               if (typeof item === 'number') {
                 return (
@@ -112,7 +113,7 @@ const Track = () => {
                 </View>
                 <View className="items-end">
                   <Text className="text-lg font-bold text-color5">
-                    {race.time.replace(',', '.')}
+                    {race.time}
                   </Text>
                   <Text className="text-sm font-light">Best Lap</Text>
                 </View>

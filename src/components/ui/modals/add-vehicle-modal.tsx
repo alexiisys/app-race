@@ -9,6 +9,7 @@ import { addCar } from '@/lib/storage/modules/cars';
 import { CATEGORY_CAR } from '@/lib/utils';
 
 import { Modal } from '../modal';
+import { setCarId } from '@/lib/storage';
 
 type Props = {
   onClose?: () => void;
@@ -21,13 +22,15 @@ const AddVehicleModal = React.forwardRef<BottomSheetModal, Props>(
     const [category, setCategory] = useState(CATEGORY_CAR[0].value);
 
     const onAddCar = () => {
-      addCar({
+      const car = {
         id: `id_car_${Date.now()}`,
         name,
         category,
         param1: Math.floor(Math.random() * (100 - 20 + 1)) + 20,
         param2: Math.floor(Math.random() * (100 - 20 + 1)) + 20,
-      });
+      };
+      addCar(car);
+      setCarId(car.id)
     };
 
     return (
